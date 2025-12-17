@@ -19,10 +19,13 @@ public class Ejercicio {
         Scanner entrada = new Scanner(System.in);
         String[][] arreglo1 = new String[1][5];
 
-        int[][] arreglo2 = new int[1][5];
+        int[][] arreglo2 = new int[1][12];
 
         String valorIngresado;
-
+        
+        int suma;
+        suma = 0;
+        
         int valorIngresado2;
         valorIngresado2 = 0;
 
@@ -46,7 +49,7 @@ public class Ejercicio {
         contador = 1;
         for (int i = 0; i < arreglo2.length; i++) {
             for (int j = 0; j < arreglo2[i].length; j++) {
-                System.out.printf("Ingrese el valor para el encargado #%s :", contador);
+                System.out.printf("Ingrese el valor que generó la estación #%s :", contador);
                 valorIngresado2 = entrada.nextInt();
                 arreglo2[i][j] = valorIngresado2;
                 contador++;
