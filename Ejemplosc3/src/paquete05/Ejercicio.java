@@ -1,59 +1,59 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package paquete05;
-
 import java.util.Scanner;
 
-/**
- *
- * @author PC
- */
 public class Ejercicio {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        String[][] arreglo1 = new String[1][5];
-
-        int[][] arreglo2 = new int[1][12];
-
-        String valorIngresado;
         
-        int suma;
-        suma = 0;
+        String[] nombres = new String[5];
         
-        int valorIngresado2;
-        valorIngresado2 = 0;
-
-        int produccion;
-        produccion = 0;
-
-        int contador;
-        contador = 1;
-
-        System.out.println("Ingreso los nombres de los encargados ");
-
-        for (int i = 0; i < arreglo1.length; i++) {
-            for (int j = 0; j < arreglo1[i].length; j++) {
-                System.out.printf("Ingrese el nombre para el encargado %s :", contador);
-                valorIngresado = entrada.nextLine();
-                arreglo1[i][j] = valorIngresado;
-                contador++;
+        int[][] produccion = new int[5][12];
+        
+        System.out.println("Ingreso los nombres de los encargados\n");
+        for (int i = 0; i < nombres.length; i++) {
+            System.out.printf("Ingrese el nombre para el encargado de la estación %d: ", (i + 1));
+            nombres[i] = entrada.nextLine();
+        }
+        
+        System.out.println();
+        
+        for (int i = 0; i < produccion.length; i++) {
+            System.out.printf("Ingreso de producción mensual para la Estación %d (%s)\n", (i + 1), nombres[i]);
+            for (int j = 0; j < produccion[i].length; j++) {
+                System.out.printf("Ingrese la producción del mes %d: $", (j + 1));
+                produccion[i][j] = entrada.nextInt();
             }
             System.out.println();
         }
-        contador = 1;
-        for (int i = 0; i < arreglo2.length; i++) {
-            for (int j = 0; j < arreglo2[i].length; j++) {
-                System.out.printf("Ingrese el valor que generó la estación #%s :", contador);
-                valorIngresado2 = entrada.nextInt();
-                arreglo2[i][j] = valorIngresado2;
-                contador++;
+        
+        int[] totales = new int[5];
+        for (int i = 0; i < produccion.length; i++) {
+            int suma = 0;
+            for (int j = 0; j < produccion[i].length; j++) {
+                suma = suma + produccion[i][j];
+            }
+            totales[i] = suma;
+        }
+        
+        int maxProduccion = totales[0];
+        int indiceMax = 0;
+        for (int i = 1; i < totales.length; i++) {
+            if (totales[i] > maxProduccion) {
+                maxProduccion = totales[i];
+                indiceMax = i;
             }
         }
+        
+        System.out.println("Análisis de Producción");
+        System.out.println("Estación");
+        
+        for (int i = 0; i < nombres.length; i++) {
+            System.out.printf("Nombre Estación %d - Total Producción: $ %d\n", (i + 1), totales[i]);
+        }
+        
+        System.out.println();
+        System.out.printf("Estación más productiva: Nombre Estación %d\n", (indiceMax + 1));
+        System.out.printf("Encargado de la estación: %s\n", nombres[indiceMax]);
+        System.out.printf("Cantidad de la estación más productiva: $ %d\n", maxProduccion);
     }
 }
